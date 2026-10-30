@@ -2,7 +2,8 @@
 
 Analisi da fonti aperte del caso Revolut (settembre 2026): dati di 680 clienti consegnati in risposta a richieste fraudolente inviate da una casella PEC autentica della Prefettura di Reggio Calabria.
 
-**Tesi:** in Italia una PEC dimostra da quale casella parte una richiesta, non che chi scrive abbia il potere di farla. Nel caso Revolut le incoerenze tra mittente e richiesta erano rilevabili con i dati pubblici di IndicePA; l'unica difesa che un attaccante preparato non supera è la verifica con l'autorità citata, che oggi non ha un canale istituzionale.
+**Tesi:** in Italia una PEC dimostra da quale casella parte una richiesta, non che chi scrive abbia il potere di farla. 
+Nel caso Revolut le incoerenze tra mittente e richiesta erano rilevabili con i dati pubblici di IndicePA, l'unica difesa che un attaccante preparato non supera è la verifica con l'autorità citata, che oggi non ha ancora un canale istituzionale.
 
 ## Contenuti
 
