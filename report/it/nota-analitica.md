@@ -78,18 +78,18 @@ Un dettaglio rafforza l'analisi: secondo il ministro la casella non era mai stat
 
 Cinque anomalie erano rilevabili prima di rispondere. Due (ente e territorio) erano verificabili con i dati di IndicePA, il registro ufficiale delle pubbliche amministrazioni; due (competenza e base giuridica) confrontando IndicePA con la norma; l'ultima (protocollo) richiede un controllo dell'operatore.
 
-**Cosa mostra IndicePA** (mie verifiche sugli open data, settembre-ottobre 2026). La PEC di protocollo della Prefettura di Reggio Calabria è registrata sotto il Ministero dell'Interno (codice ente `m_it`), con dominio `pec.interno.it`. La Polizia di Stato è invece un ente distinto (codice `XZR4RNHR`), con un proprio dominio, `pecps.poliziadistato.it`, usato solo da quell'ente. La Procura di Milano è presente con indirizzo e telefono. Nel dataset dei domicili digitali delle unità organizzative non risulta invece alcuna casella "entilocali" della Prefettura (C065).
+**Cosa mostra IndicePA** (mie verifiche sugli open data, settembre-ottobre 2026). La PEC di protocollo della Prefettura di Reggio Calabria è registrata sotto il Ministero dell'Interno (codice ente `m_it`), con dominio `pec.interno.it`. La Polizia di Stato è invece un ente distinto (codice `XZR4RNHR`), con un proprio dominio, `pecps.poliziadistato.it`, usato solo da quell'ente. La Procura di Milano è presente con indirizzo e telefono. La casella "entilocali" della Prefettura non risulta invece in nessuno dei dataset pubblici di IndicePA: né tra i domicili digitali delle unità organizzative, né tra le aree organizzative omogenee attive o cessate, dove la Prefettura di Reggio Calabria compare con la sola casella di protocollo (C065; dataset AOO e AOO cessate consultati il 30 ottobre 2026).
 
 | Controllo | Esito nel caso Revolut |
 | --- | --- |
-| La casella esiste nel registro ufficiale? | **Da verificare**: la casella "entilocali" non risulta nel dataset consultato (C065). Se confermato, anche questo controllo sarebbe fallito |
+| La casella esiste nel registro ufficiale? | **Fallito:** la casella "entilocali" non risulta in IndicePA, né attiva né cessata (C065) (non tutte le caselle di un ente sono censite però) |
 | L'ente titolare della casella coincide con quello dichiarato? | **Fallito**: casella del Ministero dell'Interno, richiesta a nome della Polizia Postale |
 | Mittente e autorità citata sono coerenti per territorio? | **Fallito**: ufficio a Reggio Calabria, indagine della Procura di Milano |
 | L'ufficio ha la competenza per chiedere quei dati? | **Fallito**: una Prefettura che chiede documenti KYC e dati bancari |
 | La base giuridica è coerente con il mittente? | **Fallito**: Ordine europeo di indagine citato da un ufficio che non è né autorità giudiziaria né polizia giudiziaria |
 | Il protocollo è riconducibile al mittente? | **Fallito**: protocolli riconducibili alla Procura di Roma |
 
-Il punto su cui concentrarsi è la prima riga. Anche nell'ipotesi più favorevole all'attaccante, cioè con una casella censita nel registro, il controllo sul mittente viene superato: una procedura che si ferma lì non ferma questo attacco.
+Il punto su cui concentrarsi è la prima riga. Nel caso reale la casella non era nel registro pubblico, e un controllo sistematico l'avrebbe segnalata. Ma anche nell'ipotesi più favorevole all'attaccante, cioè con una casella censita, il controllo sul mittente viene superato, una procedura che si ferma lì non ferma quindi un attacco più curato.
 
 La verifica che ha effettivamente scoperto la frode è stata un contatto con l'ente per altre vie (C036), arrivato dopo circa quattro mesi di richieste (C034).
 
@@ -111,10 +111,8 @@ I controlli di coerenza avrebbero fermato questo attaccante perché ha commesso 
 
 ## Raccomandazioni
 
-| # | Per | Raccomandazione | Perché |
-| --- | --- | --- | --- |
-| 1 | Banche, fintech e provider che ricevono richieste | Controlli di coerenza obbligatori su ente, territorio, competenza e base giuridica, e callback all'autorità citata con numeri presi da fonti indipendenti | Nel caso Revolut avrebbero rilevato cinque anomalie |
-| 2 | Ministero della Giustizia | Un punto di contatto presso ogni Procura, o un servizio centrale, per verificare l'autenticità delle richieste di dati | Rende praticabile la verifica fuori banda, oggi affidata alla buona volontà |
-| 3 | Autorità giudiziaria e forze di polizia | Allegare sempre il provvedimento dell'autorità giudiziaria, firmato digitalmente e verificabile | Falsificare un provvedimento firmato è molto più difficile che usare una casella compromessa |
-| 4 | Pubbliche amministrazioni | Autenticazione a più fattori, monitoraggio degli accessi anomali e disattivazione delle caselle PEC inutilizzate | Il furto di credenziali da solo non basterebbe più; la casella usata nell'attacco risultava mai utilizzata (C055) |
-| 5 | Governo e Ministero della Giustizia, nell'attuazione di e-Evidence | Definire come chi riceve un ordine con mezzi alternativi possa verificarne l'autenticità, come chiede l'art. 19 del regolamento; nel frattempo, linee guida per i fornitori di servizi digitali | Il sistema sicuro non è operativo e la norma non dice come verificare gli ordini arrivati per altre vie, con scadenze fino a 8 ore (C051, C053) |
+**Banche, fintech e provider che ricevono richieste:** Controlli di coerenza obbligatori su ente, territorio, competenza e base giuridica, che nel caso Revolut avrebbero rilevato cinque anomalie |
+**Ministero della Giustizia:** Un punto di contatto presso ogni Procura, o un servizio centrale, per verificare l'autenticità delle richieste di dati, renderebbe praticabile la verifica fuori banda, oggi affidata alla buona volontà.
+**Autorità giudiziaria e forze di polizia:** Allegare sempre il provvedimento dell'autorità giudiziaria, firmato digitalmente e verificabile, visto che falsificare un provvedimento firmato è già più difficile che usare una casella compromessa
+**Pubbliche amministrazioni:** Autenticazione a più fattori, monitoraggio degli accessi anomali e disattivazione delle caselle PEC inutilizzate ove possibile, il solo furto di credenziali da solo non basterebbe più, inoltre la casella usata nell'attacco risultava mai utilizzata (C055) |
+**Governo e Ministero della Giustizia, nell'attuazione di e-Evidence** Definire come chi riceve un ordine con mezzi alternativi possa verificarne l'autenticità, nel frattempo, linee guida per i fornitori di servizi digitali.
